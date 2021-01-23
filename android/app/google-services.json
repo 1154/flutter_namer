@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741074641337",
+    "firebase_url": "https://fluter-namer-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fluter-namer",
+    "storage_bucket": "fluter-namer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741074641337:android:49e1a01caf1d847fdf1668",
+        "android_client_info": {
+          "package_name": "com.example.startup_namer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741074641337-b3koi3r10d1v74587b0eg2jfo8dm3jr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRJA6I9M4mjhehSeAIvBWUPshLlhaMxVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741074641337-b3koi3r10d1v74587b0eg2jfo8dm3jr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,8 +26,8 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
-  final List<WordPair> _suggestions = <WordPair>[];
-  final _saved = Set<WordPair>();
+  final List<String> _suggestions = <String>['Yoehoe', 'FSAFssDSF'];
+  final _saved = Set<String>();
   final TextStyle _biggerFont = const TextStyle(fontSize: 18);
 
   @override
@@ -48,35 +52,18 @@ class _RandomWordsState extends State<RandomWords> {
         // the word pairing. For odd rows, the function adds a
         // Divider widget to visually separate the entries. Note that
         // the divider may be difficult to see on smaller devices.
+        itemCount: _suggestions.length,
         itemBuilder: (BuildContext _context, int i) {
-          // Add a one-pixel-high divider widget before each row
-          // in the ListView.
-          if (i.isOdd) {
-            return Divider();
-          }
-
-          // The syntax "i ~/ 2" divides i by 2 and returns an
-          // integer result.
-          // For example: 1, 2, 3, 4, 5 becomes 0, 1, 1, 2, 2.
-          // This calculates the actual number of word pairings
-          // in the ListView,minus the divider widgets.
-          final int index = i ~/ 2;
-          // If you've reached the end of the available word
-          // pairings...
-          if (index >= _suggestions.length) {
-            // ...then generate 10 more and add them to the
-            // suggestions list.
-            _suggestions.addAll(['Yoehoe', 'fewfw']);
-          }
-          return _buildRow(_suggestions[index]);
+          print(i);
+          return _buildRow(_suggestions[i]);
         });
   }
 
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
+  Widget _buildRow(String woordje) {
+    final alreadySaved = _saved.contains(woordje);
     return ListTile(
       title: Text(
-        pair.asPascalCase,
+        woordje,
         style: _biggerFont,
       ),
       trailing: Icon(
@@ -86,9 +73,9 @@ class _RandomWordsState extends State<RandomWords> {
       onTap: () {
         setState(() {
           if (alreadySaved) {
-            _saved.remove(pair);
+            _saved.remove(woordje);
           } else {
-            _saved.add(pair);
+            _saved.add(woordje);
           }
         });
       },
@@ -100,10 +87,10 @@ class _RandomWordsState extends State<RandomWords> {
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           final tiles = _saved.map(
-            (WordPair pair) {
+            (String pair) {
               return ListTile(
                 title: Text(
-                  pair.asPascalCase,
+                  pair,
                   style: _biggerFont,
                 ),
               );
